@@ -5,7 +5,8 @@ PolyBug is a fast, multi-language AI code debugger powered by Google Gemini.
 
 Paste your code, select language, and get instant bug analysis in Telugu + English mix.
 
-**Live Demo:** `your-link-will-be-here.streamlit.app`
+**Live Demo:** `https://polybug-ai.streamlit.app/
+`
 
 ### ✨ Features
 - 🌍 Supports Python, Java, C++, JavaScript, SQL & more
