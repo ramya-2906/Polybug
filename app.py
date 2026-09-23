@@ -5,14 +5,10 @@ from styles import CUSTOM_CSS
 
 st.set_page_config(page_title="PolyBug", page_icon="🐞", layout="centered")
 
-# Hide Streamlit Buttons
 st.markdown("""
 <style>
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-header {visibility: hidden;}
-.stDeployButton {display:none;}
-div[data-testid="stToolbar"] {visibility: hidden;}
+#MainMenu, footer, header {visibility: hidden!important; display: none!important;}
+.stDeployButton, div[data-testid="stToolbar"], div[data-testid="stStatusWidget"], div[data-testid="stBottom"], div[data-testid="stBottomBlockContainer"],.viewerBadge_container__1QSob,._container_gzau3_1, iframe[title="streamlit viewer badge"] {display: none!important;}
 </style>
 """, unsafe_allow_html=True)
 
@@ -30,29 +26,19 @@ if st.button("🔍 Find Bugs Now"):
         try:
             prompt = get_polybug_prompt(code_input)
             API_URL = "https://text.pollinations.ai/openai"
-            payload = {
-                "model": "openai",
-                "messages": [{"role": "user", "content": prompt}],
-                "max_tokens": 1500
-            }
+            payload = {"model": "openai", "messages": [{"role": "user", "content": prompt}], "max_tokens": 1500}
             with st.spinner("Analyzing code..."):
                 response = requests.post(API_URL, json=payload, timeout=30)
                 response.raise_for_status()
                 data = response.json()
                 result_text = data['choices'][0]['message']['content']
-
                 if "No Bugs Found" in result_text:
                     st.markdown("<h3 style='text-align:center; background:#dcfce7; color:#15803d; padding:10px; border-radius:12px;'>✅ No Bugs Found! Clean Code ✨</h3>", unsafe_allow_html=True)
                 else:
-                    count = result_text.count("**Bug")
-                    if count == 0:
-                        count = 1
+                    count = result_text.count("**Bug") or 1
                     badge_text = f"🐞 {count} Bug{'s' if count > 1 else ''} Found!"
                     st.markdown(f"<h3 style='text-align:center; background:#fee2e2; color:#b91c1c; padding:10px; border-radius:12px;'>{badge_text}</h3>", unsafe_allow_html=True)
-
                 st.markdown(result_text)
-
             st.success("Done! ✨")
-
         except Exception as e:
             st.error(f"Error: {e}. Please wait 15 seconds and try again.")
