@@ -2,7 +2,7 @@
 
 PolyBug is a free, AI-powered code debugger. Paste your code in any language and it finds bugs instantly. **No API Key Needed!**
 
-**Live Demo:** https://your-app-link.streamlit.app
+**Live Demo:** https://polybug-ai.streamlit.app/
 
 ### ✨ Features
 - 🌍 Works with Python, Java, C++, JavaScript & more
