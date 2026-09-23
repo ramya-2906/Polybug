@@ -1,12 +1,11 @@
 CUSTOM_CSS = """
 <style>
-#MainMenu {visibility: hidden !important;}
-footer {visibility: hidden !important;}
-header {visibility: hidden !important;}
+#MainMenu, footer, header {visibility: hidden !important;}
 .stDeployButton {display: none !important;}
 div[data-testid="stToolbar"] {visibility: hidden !important;}
-div[data-testid="stDecoration"] {visibility: hidden !important;}
 div[data-testid="stStatusWidget"] {visibility: hidden !important;}
+div[data-testid="stBottomBlockContainer"] > div {display: none !important;}
+.viewerBadge_container__1QSob, .viewerBadge_link__qRIco, .styles_viewerBadge__CvC9N, ._container_gzau3_1, ._profilePreview_gzau3_63, .stAppDeployButton {display: none !important;}
 
 [data-testid="stAppViewContainer"] {
     background: #f3f0ff!important;
