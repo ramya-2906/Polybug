@@ -1,5 +1,13 @@
 CUSTOM_CSS = """
 <style>
+#MainMenu {visibility: hidden !important;}
+footer {visibility: hidden !important;}
+header {visibility: hidden !important;}
+.stDeployButton {display: none !important;}
+div[data-testid="stToolbar"] {visibility: hidden !important;}
+div[data-testid="stDecoration"] {visibility: hidden !important;}
+div[data-testid="stStatusWidget"] {visibility: hidden !important;}
+
 [data-testid="stAppViewContainer"] {
     background: #f3f0ff!important;
     background-image:
