@@ -1,0 +1,29 @@
+
+name: PolyBug AI Availability Check
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  check-website:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check PolyBug AI
+        run: |
+          URL="https://polybug-ai.streamlit.app/"
+
+          STATUS=$(curl -L -s -o /dev/null \
+            -w "%{http_code}" \
+            --max-time 60 "$URL" || true)
+
+          echo "PolyBug AI HTTP status: $STATUS"
+
+          if [ "$STATUS" -ge 200 ] && [ "$STATUS" -lt 400 ]; then
+            echo "Website responded successfully."
+          else
+            echo "Website may be sleeping or unavailable."
+            exit 1
+          fi
